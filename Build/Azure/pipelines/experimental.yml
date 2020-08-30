@@ -29,6 +29,15 @@ stages:
     # mitigate https://status.dev.azure.com/_event/182998791
     - task: NuGetToolInstaller@1
 
+    - powershell: 'Write-Host "Build.SourceBranch:" $(Build.SourceBranch)'
+      displayName: Build.SourceBranch variable
+    - powershell: 'Write-Host "System.PullRequest.IsFork:" $(System.PullRequest.IsFork)'
+      displayName: System.PullRequest.IsFork variable
+    - powershell: 'Write-Host "System.PullRequest.TargetBranch:" $(System.PullRequest.TargetBranch)'
+      displayName: System.PullRequest.TargetBranch variable
+    - powershell: 'Write-Host "System.PullRequest.PullRequestNumber:" $(System.PullRequest.PullRequestNumber)'
+      displayName: System.PullRequest.PullRequestNumber variable
+
     - task: PowerShell@2
       inputs:
         filePath: '$(Build.SourcesDirectory)/Build/SetVersion.ps1'
@@ -108,8 +117,9 @@ stages:
         artifact: '$(netcore21_tests)'
       displayName: Publish test artifacts for NETCOREAPP2.1
 
-#################################################
-
+##################################
+# TESTS: NETCORE2.1 UBUNTU 16.04 #
+##################################
   - job: test_linux_netcoreapp21_job
     pool:
       vmImage: 'ubuntu-16.04'
@@ -368,8 +378,8 @@ stages:
 #      vmImage: 'windows-2019'
     displayName: 'Tests: Win / NETCOREAPP2.1 / '
     dependsOn: build_job
-    condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'release'))
-#    condition: eq(variables['Build.SourceBranchName'], 'fake')
+#    condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'release'))
+    condition: eq(variables['Build.SourceBranchName'], 'fake')
 
     strategy:
       matrix:
@@ -438,8 +448,8 @@ stages:
       vmImage: 'windows-2019'
     displayName: 'Tests: Win / NETFX 4.6 / '
     dependsOn: build_job
-    condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'release'))
-#    condition: eq(variables['Build.SourceBranchName'], 'fake')
+#    condition: and(succeeded(), ne(variables['Build.SourceBranchName'], 'release'))
+    condition: eq(variables['Build.SourceBranchName'], 'fake')
 
     strategy:
       matrix:
