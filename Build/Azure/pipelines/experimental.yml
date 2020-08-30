@@ -529,7 +529,7 @@ stages:
       displayName: Create commit with baselines
 
     - task: CmdLine@2
-      condition: and(success(), variables['with_baselines'])
+      condition: and(succeeded(), variables['with_baselines'])
       inputs:
         script: 'git pull-request'
       displayName: Create baselines PR

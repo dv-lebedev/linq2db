@@ -112,7 +112,7 @@ namespace Tests
 			var slnPath = GetFilePath(assemblyPath, "linq2db.sln");
 			if (slnPath != null)
 			{
-				_baselinesPath = Path.Combine(Path.GetDirectoryName(slnPath), "Tests", "Baselines");
+				_baselinesPath = Path.Combine(Path.GetDirectoryName(slnPath)!, "Tests", "Baselines");
 				Directory.CreateDirectory(_baselinesPath);
 			}
 
