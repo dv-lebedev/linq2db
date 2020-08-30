@@ -484,8 +484,7 @@ stages:
 
     steps:
     - checkout: none
-    - checkout: self
-      condition: variables['with_baselines']
+      condition: ne(variables['with_baselines'], true)
 
     - task: DownloadPipelineArtifact@2
       inputs:
