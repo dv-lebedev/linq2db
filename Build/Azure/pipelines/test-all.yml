@@ -208,11 +208,6 @@ stages:
         artifactName: '$(netfx46_tests)'
         targetPath: '$(System.DefaultWorkingDirectory)'
 
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifactName: '$(netfx46_tests)'
-        targetPath: '$(System.DefaultWorkingDirectory)'
-
     - task: CmdLine@2
       inputs:
         script: 'copy $(System.DefaultWorkingDirectory)\configs\$(config).json UserDataProviders.json'
@@ -307,11 +302,6 @@ stages:
 
     steps:
     - checkout: none
-
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifactName: '$(netfx46_tests)'
-        targetPath: '$(System.DefaultWorkingDirectory)'
 
     - task: DownloadPipelineArtifact@2
       inputs:

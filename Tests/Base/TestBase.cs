@@ -43,8 +43,7 @@ namespace Tests
 
 		private const int TRACES_LIMIT = 50000;
 		
-		private static string _rootPath;
-		private static string _baselinesPath;
+		private static string? _baselinesPath;
 
 		static TestBase()
 		{
@@ -110,9 +109,12 @@ namespace Tests
 			{ }
 #endif
 
-			_rootPath = Path.GetDirectoryName(GetFilePath(assemblyPath, "linq2db.sln"))!;
-			_baselinesPath = Path.Combine(_rootPath, "Tests", "Baselines");
-			Directory.CreateDirectory(_baselinesPath);
+			var slnPath = GetFilePath(assemblyPath, "linq2db.sln");
+			if (slnPath != null)
+			{
+				_baselinesPath = Path.Combine(Path.GetDirectoryName(slnPath), "Tests", "Baselines");
+				Directory.CreateDirectory(_baselinesPath);
+			}
 
 			Environment.CurrentDirectory = assemblyPath;
 
@@ -1093,24 +1095,22 @@ namespace Tests
 		{
 			var ctx = CustomTestContext.Get();
 
-			var baseline = ctx.Get<StringBuilder>(CustomTestContext.BASELINE);
-			if (baseline != null)
+			if (_baselinesPath != null)
 			{
-				BaselinesWriter.Write(_baselinesPath, baseline.ToString());
+				var baseline = ctx.Get<StringBuilder>(CustomTestContext.BASELINE);
+				if (baseline != null)
+					BaselinesWriter.Write(_baselinesPath, baseline.ToString());
 			}
 
 			var trace = ctx.Get<StringBuilder>(CustomTestContext.TRACE);
-			if (trace != null && TestContext.CurrentContext.Result.FailCount > 0)
+			if (trace != null && TestContext.CurrentContext.Result.FailCount > 0 && ctx.Get<bool>(CustomTestContext.LIMITED))
 			{
-				if (ctx.Get<bool>(CustomTestContext.LIMITED))
-				{
-					// we need to set ErrorInfo.Message element text
-					// because Azure displays only ErrorInfo node data
-					TestExecutionContext.CurrentContext.CurrentResult.SetResult(
-						TestExecutionContext.CurrentContext.CurrentResult.ResultState,
-						TestExecutionContext.CurrentContext.CurrentResult.Message + "\r\n" + trace.ToString(),
-						TestExecutionContext.CurrentContext.CurrentResult.StackTrace);
-				}
+				// we need to set ErrorInfo.Message element text
+				// because Azure displays only ErrorInfo node data
+				TestExecutionContext.CurrentContext.CurrentResult.SetResult(
+					TestExecutionContext.CurrentContext.CurrentResult.ResultState,
+					TestExecutionContext.CurrentContext.CurrentResult.Message + "\r\n" + trace.ToString(),
+					TestExecutionContext.CurrentContext.CurrentResult.StackTrace);
 			}
 
 			CustomTestContext.Release();
