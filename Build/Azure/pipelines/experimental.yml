@@ -483,7 +483,9 @@ stages:
 #          script: 'sqlserver.2016.cmd'
 
     steps:
-    - checkout: $(with_baselines)
+    - checkout: none
+    - checkout: self
+      condition: variables['with_baselines']
 
     - task: DownloadPipelineArtifact@2
       inputs:
