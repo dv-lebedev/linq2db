@@ -525,6 +525,12 @@ stages:
     - task: CmdLine@2
       condition: variables['with_baselines']
       inputs:
+        script: 'git config user.email "azp@example.com"'
+      displayName: Set git user
+
+    - task: CmdLine@2
+      condition: variables['with_baselines']
+      inputs:
         script: 'git commit $(System.DefaultWorkingDirectory)\Tests\Baselines -m "[Azure] Baselines update"'
       displayName: Create commit with baselines
 
