@@ -29,8 +29,8 @@
 			"Access.Odbc",
 			"SqlCe",
 			"SQLite.Classic",
-			"SQLite.Classic.MiniProfiler.Unmapped",
-			"SQLite.Classic.MiniProfiler.Mapped",
+			"SQLite.Classic.MPU",
+			"SQLite.Classic.MPM",
 			"SQLite.MS",
 			"Northwind.SQLite",
 			"Northwind.SQLite.MS",
@@ -88,12 +88,12 @@
 				"Provider": "SQLite",
 				"ConnectionString": "Data Source=Database/TestData.sqlite"
 			},
-			"SQLite.Classic.MiniProfiler.Unmapped": {
-				"Provider": "SQLite.Classic.MiniProfiler.Unmapped",
+			"SQLite.Classic.MPU": {
+				"Provider": "SQLite.Classic.MPU",
 				"ConnectionString": "Data Source=Database/TestData.MiniProfiler.Unmapped.sqlite"
 			},
-			"SQLite.Classic.MiniProfiler.Mapped": {
-				"Provider": "SQLite.Classic.MiniProfiler.Mapped",
+			"SQLite.Classic.MPM": {
+				"Provider": "SQLite.Classic.MPM",
 				"ConnectionString": "Data Source=Database/TestData.MiniProfiler.Mapped.sqlite"
 			},
 			"SQLite.Classic.Data": {
@@ -262,8 +262,8 @@
 			"Access.Odbc",
 			"SqlCe",
 			"SQLite.Classic",
-			"SQLite.Classic.MiniProfiler.Unmapped",
-			"SQLite.Classic.MiniProfiler.Mapped",
+			"SQLite.Classic.MPU",
+			"SQLite.Classic.MPM",
 			"SQLite.MS",
 			"Northwind.SQLite",
 			"Northwind.SQLite.MS",
