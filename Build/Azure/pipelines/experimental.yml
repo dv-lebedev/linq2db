@@ -537,7 +537,7 @@ stages:
     - task: CmdLine@2
       condition: and(succeeded(), variables['with_baselines'])
       inputs:
-        script: 'git pull-request'
+        script: 'git request-pull'
       displayName: Create baselines PR
 
 ###########################
