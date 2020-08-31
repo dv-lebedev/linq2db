@@ -1,7 +1,7 @@
 ﻿BeforeExecute
 -- SQLite.Classic SQLite
 
-CREATE TABLE [Animals18]
+CREATE TABLE [Animals69]
 (
 	[AnimalType]    NVarChar(40)  NOT NULL,
 	[AnimalType2]   NVarChar(40)  NOT NULL,
@@ -12,18 +12,18 @@ CREATE TABLE [Animals18]
 	[Second]        NVarChar(40)      NULL,
 	[First]         NVarChar(40)      NULL,
 
-	CONSTRAINT [PK_Animals18] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Animals69] PRIMARY KEY ([Id])
 )
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-CREATE TABLE [Eyes18]
+CREATE TABLE [Eyes69]
 (
 	[Id] INTEGER      NOT NULL,
 	[Xy] NVarChar(40)     NULL,
 
-	CONSTRAINT [PK_Eyes18] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Eyes69] PRIMARY KEY ([Id])
 )
 
 BeforeExecute
@@ -42,7 +42,7 @@ SET     @Id = 1
 DECLARE @Xy NVarChar(5) -- String
 SET     @Xy = 'Hallo'
 
-INSERT INTO [Eyes18]
+INSERT INTO [Eyes69]
 (
 	[Id],
 	[Xy]
@@ -72,7 +72,7 @@ SET     @DogName_Second = 'b'
 DECLARE @DogName_First NVarChar(1) -- String
 SET     @DogName_First = 'a'
 
-INSERT INTO [Animals18]
+INSERT INTO [Animals69]
 (
 	[Discriminator],
 	[Name],
@@ -108,7 +108,7 @@ SET     @AnimalType2 = 'Big'
 DECLARE @AnimalType NVarChar(3) -- String
 SET     @AnimalType = 'Big'
 
-INSERT INTO [Animals18]
+INSERT INTO [Animals69]
 (
 	[Discriminator],
 	[Name],
@@ -176,7 +176,7 @@ SELECT
 	[t1].[Second],
 	[t1].[First]
 FROM
-	[Animals18] [t1]
+	[Animals69] [t1]
 WHERE
 	[t1].[Discriminator] = 'Dog'
 LIMIT @take
@@ -201,7 +201,7 @@ DECLARE @Id  -- Int32
 SET     @Id = 1
 
 UPDATE
-	[Animals18]
+	[Animals69]
 SET
 	[Discriminator] = @Discriminator,
 	[Name] = @Name,
@@ -211,7 +211,7 @@ SET
 	[Second] = @DogName_Second,
 	[First] = @DogName_First
 WHERE
-	[Animals18].[Id] = @Id
+	[Animals69].[Id] = @Id
 
 BeforeExecute
 -- SQLite.Classic SQLite
@@ -233,7 +233,7 @@ DECLARE @Id  -- Int32
 SET     @Id = 1
 
 UPDATE
-	[Animals18]
+	[Animals69]
 SET
 	[AnimalType] = @AnimalType,
 	[AnimalType2] = @AnimalType2,
@@ -243,7 +243,7 @@ SET
 	[Second] = @DogName_Second,
 	[First] = @DogName_First
 WHERE
-	[Animals18].[Id] = @Id
+	[Animals69].[Id] = @Id
 
 BeforeExecute
 -- SQLite.Classic SQLite
@@ -264,7 +264,7 @@ SET     @DogName_Second = NULL
 DECLARE @DogName_First NVarChar -- String
 SET     @DogName_First = NULL
 
-INSERT INTO [Animals18]
+INSERT INTO [Animals69]
 (
 	[Discriminator],
 	[Name],
@@ -290,12 +290,12 @@ VALUES
 BeforeExecute
 -- SQLite.Classic SQLite
 
-DROP TABLE IF EXISTS [Animals18]
+DROP TABLE IF EXISTS [Animals69]
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-DROP TABLE IF EXISTS [Eyes18]
+DROP TABLE IF EXISTS [Eyes69]
 
 BeforeExecute
 -- SQLite.Classic SQLite

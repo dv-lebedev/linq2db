@@ -1,7 +1,7 @@
 ﻿BeforeExecute
 -- SQLite.Classic SQLite
 
-CREATE TABLE [Animals16]
+CREATE TABLE [Animals61]
 (
 	[AnimalType]    NVarChar(40)  NOT NULL,
 	[AnimalType2]   NVarChar(40)  NOT NULL,
@@ -12,18 +12,18 @@ CREATE TABLE [Animals16]
 	[Second]        NVarChar(40)      NULL,
 	[First]         NVarChar(40)      NULL,
 
-	CONSTRAINT [PK_Animals16] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Animals61] PRIMARY KEY ([Id])
 )
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-CREATE TABLE [Eyes16]
+CREATE TABLE [Eyes61]
 (
 	[Id] INTEGER      NOT NULL,
 	[Xy] NVarChar(40)     NULL,
 
-	CONSTRAINT [PK_Eyes16] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Eyes61] PRIMARY KEY ([Id])
 )
 
 BeforeExecute
@@ -42,7 +42,7 @@ SET     @Id = 1
 DECLARE @Xy NVarChar(5) -- String
 SET     @Xy = 'Hallo'
 
-INSERT INTO [Eyes16]
+INSERT INTO [Eyes61]
 (
 	[Id],
 	[Xy]
@@ -72,7 +72,7 @@ SET     @DogName_Second = 'b'
 DECLARE @DogName_First NVarChar(1) -- String
 SET     @DogName_First = 'a'
 
-INSERT INTO [Animals16]
+INSERT INTO [Animals61]
 (
 	[Discriminator],
 	[Name],
@@ -108,7 +108,7 @@ SET     @AnimalType2 = 'Big'
 DECLARE @AnimalType NVarChar(3) -- String
 SET     @AnimalType = 'Big'
 
-INSERT INTO [Animals16]
+INSERT INTO [Animals61]
 (
 	[Discriminator],
 	[Name],
@@ -178,7 +178,7 @@ SELECT
 	[x].[Second],
 	[x].[First]
 FROM
-	[Animals16] [x]
+	[Animals61] [x]
 WHERE
 	[x].[Discriminator] = 'Dog' AND [x].[AnimalType] = @AnimalType_1
 LIMIT @take
@@ -200,7 +200,7 @@ SELECT
 	[x].[Second],
 	[x].[First]
 FROM
-	[Animals16] [x]
+	[Animals61] [x]
 WHERE
 	[x].[Discriminator] = 'Dog' AND [x].[AnimalType] = @AnimalType_1
 LIMIT @take
@@ -220,7 +220,7 @@ SELECT
 	[x].[Second],
 	[x].[First]
 FROM
-	[Animals16] [x]
+	[Animals61] [x]
 WHERE
 	[x].[Discriminator] = 'Dog' AND [x].[AnimalType2] = 'Big'
 LIMIT @take
@@ -242,7 +242,7 @@ SELECT
 	[x].[Second],
 	[x].[First]
 FROM
-	[Animals16] [x]
+	[Animals61] [x]
 WHERE
 	[x].[Discriminator] = 'Dog' AND [x].[AnimalType2] = @AnimalType2_1
 LIMIT @take
@@ -262,7 +262,7 @@ SELECT
 	[x].[Second],
 	[x].[First]
 FROM
-	[Animals16] [x]
+	[Animals61] [x]
 WHERE
 	([x].[Discriminator] = 'Dog' OR [x].[Discriminator] = 'SuperWildAnimal')
 LIMIT @take
@@ -277,7 +277,7 @@ SELECT
 	[x].[TestAnimalId]
 FROM
 	[TestAnimalTable] [x]
-		LEFT JOIN [Animals16] [a_TestAnimal] ON [x].[TestAnimalId] = [a_TestAnimal].[Id]
+		LEFT JOIN [Animals61] [a_TestAnimal] ON [x].[TestAnimalId] = [a_TestAnimal].[Id]
 WHERE
 	[a_TestAnimal].[Discriminator] = 'Dog' AND [a_TestAnimal].[EyeId] = 1
 LIMIT @take
@@ -285,12 +285,12 @@ LIMIT @take
 BeforeExecute
 -- SQLite.Classic SQLite
 
-DROP TABLE IF EXISTS [Animals16]
+DROP TABLE IF EXISTS [Animals61]
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-DROP TABLE IF EXISTS [Eyes16]
+DROP TABLE IF EXISTS [Eyes61]
 
 BeforeExecute
 -- SQLite.Classic SQLite

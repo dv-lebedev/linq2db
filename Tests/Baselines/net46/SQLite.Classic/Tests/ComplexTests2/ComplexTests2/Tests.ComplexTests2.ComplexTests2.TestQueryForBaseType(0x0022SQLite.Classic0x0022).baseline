@@ -1,7 +1,7 @@
 ﻿BeforeExecute
 -- SQLite.Classic SQLite
 
-CREATE TABLE [Animals13]
+CREATE TABLE [Animals49]
 (
 	[AnimalType]    NVarChar(40)  NOT NULL,
 	[AnimalType2]   NVarChar(40)  NOT NULL,
@@ -12,18 +12,18 @@ CREATE TABLE [Animals13]
 	[Second]        NVarChar(40)      NULL,
 	[First]         NVarChar(40)      NULL,
 
-	CONSTRAINT [PK_Animals13] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Animals49] PRIMARY KEY ([Id])
 )
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-CREATE TABLE [Eyes13]
+CREATE TABLE [Eyes49]
 (
 	[Id] INTEGER      NOT NULL,
 	[Xy] NVarChar(40)     NULL,
 
-	CONSTRAINT [PK_Eyes13] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Eyes49] PRIMARY KEY ([Id])
 )
 
 BeforeExecute
@@ -42,7 +42,7 @@ SET     @Id = 1
 DECLARE @Xy NVarChar(5) -- String
 SET     @Xy = 'Hallo'
 
-INSERT INTO [Eyes13]
+INSERT INTO [Eyes49]
 (
 	[Id],
 	[Xy]
@@ -72,7 +72,7 @@ SET     @DogName_Second = 'b'
 DECLARE @DogName_First NVarChar(1) -- String
 SET     @DogName_First = 'a'
 
-INSERT INTO [Animals13]
+INSERT INTO [Animals49]
 (
 	[Discriminator],
 	[Name],
@@ -108,7 +108,7 @@ SET     @AnimalType2 = 'Big'
 DECLARE @AnimalType NVarChar(3) -- String
 SET     @AnimalType = 'Big'
 
-INSERT INTO [Animals13]
+INSERT INTO [Animals49]
 (
 	[Discriminator],
 	[Name],
@@ -174,17 +174,17 @@ SELECT
 	[t1].[Second],
 	[t1].[First]
 FROM
-	[Animals13] [t1]
+	[Animals49] [t1]
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-DROP TABLE IF EXISTS [Animals13]
+DROP TABLE IF EXISTS [Animals49]
 
 BeforeExecute
 -- SQLite.Classic SQLite
 
-DROP TABLE IF EXISTS [Eyes13]
+DROP TABLE IF EXISTS [Eyes49]
 
 BeforeExecute
 -- SQLite.Classic SQLite
