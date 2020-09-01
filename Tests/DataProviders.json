@@ -223,7 +223,8 @@
 	},
 
 	"AzureConnectionStrings": {
-		"BasedOn"             : "CommonConnectionStrings",
+		"BasedOn": "CommonConnectionStrings",
+		"BaselinesPath": "./baselines",
 		"Connections"         : {
 			"SqlServer"         : { "Provider": "System.Data.SqlClient",           "ConnectionString": "Server=localhost;Database=TestData;User Id=sa;Password=Password12!;"                                                                                      },
 			"Northwind"         : { "Provider": "System.Data.SqlClient",           "ConnectionString": "Server=localhost;Database=Northwind;User Id=sa;Password=Password12!;"                                                                                     },

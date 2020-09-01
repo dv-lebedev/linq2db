@@ -34,11 +34,11 @@ namespace Tests
 	{
 		protected class TestData
 		{
-			public static readonly DateTime DateTime = new DateTime(2020, 8, 29, 17, 54, 55, 123).AddTicks(1234);
-			public static readonly DateTime Date = new DateTime(2020, 8, 29);
-			public static readonly Guid Guid1 = new Guid("bc7b663d-0fde-4327-8f92-5d8cc3a11d11");
-			public static readonly Guid Guid2 = new Guid("a948600d-de21-4f74-8ac2-9516b287076e");
-			public static readonly Guid Guid3 = new Guid("bd3973a5-4323-4dd8-9f4f-df9f93e2a627");
+			public static readonly DateTime DateTime = new DateTime(2020, 2, 29, 17, 54, 55, 123).AddTicks(1234);
+			public static readonly DateTime Date     = new DateTime(2020, 2, 29);
+			public static readonly Guid     Guid1    = new Guid("bc7b663d-0fde-4327-8f92-5d8cc3a11d11");
+			public static readonly Guid     Guid2    = new Guid("a948600d-de21-4f74-8ac2-9516b287076e");
+			public static readonly Guid     Guid3    = new Guid("bd3973a5-4323-4dd8-9f4f-df9f93e2a627");
 		}
 
 		private const int TRACES_LIMIT = 50000;
@@ -108,13 +108,6 @@ namespace Tests
 			catch // this can fail during tests discovering with NUnitTestAdapter
 			{ }
 #endif
-
-			var slnPath = GetFilePath(assemblyPath, "linq2db.sln");
-			if (slnPath != null)
-			{
-				_baselinesPath = Path.Combine(Path.GetDirectoryName(slnPath)!, "Tests", "Baselines");
-				Directory.CreateDirectory(_baselinesPath);
-			}
 
 			Environment.CurrentDirectory = assemblyPath;
 
@@ -225,6 +218,14 @@ namespace Tests
 				};
 			};
 #endif
+
+			// baselines
+			if (!string.IsNullOrWhiteSpace(testSettings.BaselinesPath))
+			{
+				var baselinesPath = Path.GetFullPath(testSettings.BaselinesPath);
+				if (Directory.Exists(baselinesPath))
+					_baselinesPath = baselinesPath;
+			}
 		}
 
 		protected static string? GetFilePath(string basePath, string findFileName)
