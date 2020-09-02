@@ -1,0 +1,138 @@
+parameters:
+- name: version
+  type: string
+  default: ''
+- name: os_version
+  type: string
+  default: ''
+- name: experimental
+  type: boolean
+  default: false
+
+strategy:
+  matrix:
+    SQLite:
+      title: 'SQLite'
+      config: 'sqlite'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    SQLite_MS:
+      title: 'SQLite.MS'
+      config: 'sqlite.ms'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    SqlServer2017:
+      title: 'SQL Server 2017 (System.Data.SqlClient)'
+      config: 'sqlserver.fts.2017'
+      script: 'sqlserver.2017.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    SqlServer2017_MS:
+      title: 'SQL Server 2017 (Microsoft.Data.SqlClient)'
+      config: 'sqlserver.fts.2017'
+      script: 'sqlserver.2017.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    SqlServer2019:
+      title: 'SQL Server 2019 (System.Data.SqlClient)'
+      config: 'sqlserver.fts.2019'
+      script: 'sqlserver.2019.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    SqlServer2019_MS:
+      title: 'SQL Server 2019 (Microsoft.Data.SqlClient)'
+      config: 'sqlserver.fts.2019.ms'
+      script: 'sqlserver.2019.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    MySQL:
+      title: 'MySQL'
+      config: 'mysql'
+      script: 'mysql.sh'
+      enabled: not(${{ parameters.experimental }})
+    MySQL55:
+      title: 'MySQL 5.5'
+      config: 'mysql55'
+      script: 'mysql55.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    MariaDB:
+      title: 'MariaDB'
+      config: 'mariadb'
+      script: 'mariadb.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    PostgreSQL:
+      title: 'PostgreSQL'
+      config: 'pgsql'
+      script: 'pgsql.sh'
+      enabled: not(${{ parameters.experimental }})
+    PostgreSQL92:
+      title: 'PostgreSQL 9.2'
+      config: 'pgsql92'
+      script: 'pgsql92.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    PostgreSQL93:
+      title: 'PostgreSQL 9.3'
+      config: 'pgsql93'
+      script: 'pgsql93.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    PostgreSQL95:
+      title: 'PostgreSQL 9.5'
+      config: 'pgsql95'
+      script: 'pgsql95.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    PostgreSQL10:
+      title: 'PostgreSQL 10'
+      config: 'pgsql10'
+      script: 'pgsql10.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    PostgreSQL11:
+      title: 'PostgreSQL 11'
+      config: 'pgsql11'
+      script: 'pgsql11.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    Sybase:
+      title: 'Sybase ASE 16'
+      config: 'sybase'
+      script: 'sybase.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    Oracle11:
+      title: 'Oracle 11g XE'
+      config: 'oracle11'
+      script: 'oracle11.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    Oracle12:
+      title: 'Oracle 12c'
+      config: 'oracle12'
+      script: 'oracle12.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    Firebird25:
+      title: 'Firebird 2.5'
+      config: 'firebird25'
+      script: 'firebird25.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    Firebird3:
+      title: 'Firebird 3.0'
+      config: 'firebird3'
+      script: 'firebird3.sh'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.version }}, '2.1'))
+    Informix14:
+      title: 'Informix 14.10'
+      config: 'informix'
+      script: 'informix14.sh'
+      nuget: 'IBM.Data.DB2.Core-lnx -Version 2.2.0.100'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.os_version }}, '16'))
+    DB2:
+      title: 'DB2 LUW 11.5'
+      config: 'db2'
+      script: 'db2.sh'
+      nuget: 'IBM.Data.DB2.Core-lnx -Version 2.2.0.100'
+      enabled: and(not(${{ parameters.experimental }}), eq(${{ parameters.os_version }}, '16'))
+# needs working docker image
+    Informix12:
+      title: 'Informix 12.10'
+      config: 'informix'
+      script: 'informix12.sh'
+      nuget: 'IBM.Data.DB2.Core-lnx -Version 2.2.0.100'
+      enabled: false
+# needs working docker image
+    SAPHANA2:
+      title: 'SAP HANA 2 SPS 04r40'
+      config: 'hana2'
+      script: 'mac.hana2.sh'
+      docker: 'true'
+      docker_login: 'true'
+      enabled: false
