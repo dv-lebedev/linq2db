@@ -18,12 +18,13 @@ jobs:
   dependsOn: build_job
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
-#  strategy:
-  template: test-matrix-windows.yml
-  parameters:
-    version: '46'
-    experimental: ${{ parameters. experimental }}
-    os_version: '2019'
+  strategy:
+    matrix:
+    - template: test-matrix-windows.yml
+      parameters:
+        version: '46'
+        experimental: ${{ parameters. experimental }}
+        os_version: '2019'
 
   steps:
   - template: test-workflow-windows.yml
