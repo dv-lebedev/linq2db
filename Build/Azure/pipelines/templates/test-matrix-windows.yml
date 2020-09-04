@@ -65,7 +65,7 @@ strategy:
       config: 'pgsql10'
       script: 'pgsql10.cmd'
       enabled: false
-   SqlServer2005:
+    SqlServer2005:
       title: 'SQL Server 2005 (System.Data.SqlClient)'
       config: 'sqlserver.2005'
       script: 'sqlserver.2005.cmd'
