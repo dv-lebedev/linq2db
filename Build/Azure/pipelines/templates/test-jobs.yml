@@ -20,7 +20,7 @@ jobs:
 
   strategy:
     matrix:
-    - template: test-matrix-windows.yml
+      template: test-matrix-windows.yml
       parameters:
         version: '46'
         experimental: ${{ parameters. experimental }}
