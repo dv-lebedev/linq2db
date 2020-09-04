@@ -3,6 +3,7 @@ parameters:
   type: boolean
   default: false
 
+jobs:
 - job: build_job
   pool:
     vmImage: 'windows-2019'

@@ -6,6 +6,7 @@ parameters:
   type: boolean
   default: false
 
+jobs:
 ##############################################################################################
 #  Tests: Windows (NETFX 4.6)                                                                #
 #  Windows 2019 (for Win2019 docker images, chocolatey-dependent tests and non-docker tests) #
