@@ -1,4 +1,5 @@
 variables:
+- template: templates/test-vars.yml
   solution: 'linq2db.sln'
   build_configuration: 'Azure'
   assemblyVersion: 3.1.3
@@ -8,7 +9,6 @@ variables:
   artifact_linq2db_binaries: 'linq2db_binaries'
   artifact_linq2db_tools_binaries: 'linq2db_tools_binaries'
   artifact_linq2db_aspnet_binaries: 'linq2db_aspnet_binaries'
-template: templates/test-vars.yml
 
 # build on commits to important branches: 'release', 'master'
 trigger:
