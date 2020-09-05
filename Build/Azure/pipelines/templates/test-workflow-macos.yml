@@ -1,10 +1,6 @@
 parameters:
-- name: artifacts
-  type: string
-  default: ''
-- name: netcoreversion
-  type: string
-  default: ''
+  artifacts: ''
+  netcoreversion: ''
 
 steps:
 - checkout: none

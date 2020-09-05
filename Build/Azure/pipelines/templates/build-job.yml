@@ -1,7 +1,5 @@
 parameters:
-- name: for_nuget
-  type: boolean
-  default: false
+  for_nuget: false
 
 jobs:
 - job: build_job

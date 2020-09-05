@@ -1,16 +1,8 @@
 parameters:
-- name: isCore
-  type: boolean
-  default: false
-- name: artifacts
-  type: string
-  default: ''
-- name: framework
-  type: string
-  default: ''
-- name: titleFramework
-  type: string
-  default: ''
+  isCore: false
+  artifacts: ''
+  framework: ''
+  titleFramework: ''
 
 steps:
 - checkout: none

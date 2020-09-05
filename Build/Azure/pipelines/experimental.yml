@@ -1,8 +1,9 @@
 variables:
+- template: templates/test-vars.yml
+- template: templates/test-matrix.yml
   solution: 'linq2db.sln'
   build_configuration: 'Azure'
   assemblyVersion: 3.0.0
-  template: templates/test-vars.yml
 
 trigger: none
 pr:
@@ -29,3 +30,4 @@ stages:
     parameters:
       enabled: and(succeeded(), ne(variables['Build.SourceBranchName'], 'release'))
       experimental: true
+      test_matrix: variables['text_matrix']

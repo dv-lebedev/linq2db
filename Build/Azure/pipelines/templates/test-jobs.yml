@@ -1,10 +1,7 @@
 parameters:
-- name: enabled
-  type: boolean
-  default: false
-- name: experimental
-  type: boolean
-  default: false
+  enabled: false
+  experimental: false
+  test_matrix: []
 
 jobs:
 ##############################################################################################
@@ -20,11 +17,13 @@ jobs:
 
   strategy:
     matrix:
-      template: test-matrix-windows.yml
-      parameters:
-        version: '46'
-        experimental: ${{ parameters. experimental }}
-        os_version: '2019'
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_win2019, test_config.enable_fw_net46, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_win }}
+            script: ${{ test_config.script_win }}
+            psscript: ${{ test_config.psscript_win }}
 
   steps:
   - template: test-workflow-windows.yml
@@ -46,11 +45,14 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-windows.yml
-    parameters:
-      version: '46'
-      experimental: ${{ parameters. experimental }}
-      os_version: '2016'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_win2016, test_config.enable_fw_net46, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_win }}
+            script: ${{ test_config.script_win }}
+            psscript: ${{ test_config.psscript_win }}
 
   steps:
   - template: test-workflow-windows.yml
@@ -72,11 +74,14 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-windows.yml
-    parameters:
-      version: '2.1'
-      experimental: ${{ parameters. experimental }}
-      os_version: '2016'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_win2016, test_config.enable_fw_netcore21, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_win }}
+            script: ${{ test_config.script_win }}
+            psscript: ${{ test_config.psscript_win }}
 
   steps:
   - template: test-workflow-windows.yml
@@ -98,11 +103,14 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-windows.yml
-    parameters:
-      version: '3.1'
-      experimental: ${{ parameters. experimental }}
-      os_version: '2016'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_win2016, test_config.enable_fw_netcore31, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_win }}
+            script: ${{ test_config.script_win }}
+            psscript: ${{ test_config.psscript_win }}
 
   steps:
   - template: test-workflow-windows.yml
@@ -124,11 +132,14 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-windows.yml
-    parameters:
-      version: '2.1'
-      experimental: ${{ parameters. experimental }}
-      os_version: '2019'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_win2019, test_config.enable_fw_netcore21, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_win }}
+            script: ${{ test_config.script_win }}
+            psscript: ${{ test_config.psscript_win }}
 
   steps:
   - template: test-workflow-windows.yml
@@ -149,11 +160,15 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-linux.yml
-    parameters:
-      version: '2.1'
-      experimental: ${{ parameters. experimental }}
-      os_version: '20'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_ubuntu20, test_config.enable_fw_netcore21, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_linux }}
+            script: ${{ test_config.script_linux }}
+            docker_login: ${{ test_config.docker_login }}
+            nuget: ${{ test_config.nuget_linux }}
 
   steps:
   - template: test-workflow-linux.yml
@@ -172,11 +187,15 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-linux.yml
-    parameters:
-      version: '3.1'
-      experimental: ${{ parameters. experimental }}
-      os_version: '20'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_ubuntu20, test_config.enable_fw_netcore31, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_linux }}
+            script: ${{ test_config.script_linux }}
+            docker_login: ${{ test_config.docker_login }}
+            nuget: ${{ test_config.nuget_linux }}
 
   steps:
   - template: test-workflow-linux.yml
@@ -195,11 +214,15 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-linux.yml
-    parameters:
-      version: '2.1'
-      experimental: ${{ parameters. experimental }}
-      os_version: '16'
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_ubuntu16, test_config.enable_fw_netcore21, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_linux }}
+            script: ${{ test_config.script_linux }}
+            docker_login: ${{ test_config.docker_login }}
+            nuget: ${{ test_config.nuget_linux }}
 
   steps:
   - template: test-workflow-linux.yml
@@ -218,10 +241,16 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-macos.yml
-    parameters:
-      version: '2.1'
-      experimental: ${{ parameters. experimental }}
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_macos, test_config.enable_fw_netcore21, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_macos }}
+            script: ${{ test_config.script_macos }}
+            docker: ${{ test_config.install_docker_macos }}
+            docker_login: ${{ test_config.docker_login }}
+            nuget: ${{ test_config.nuget_macos }}
 
   steps:
   - template: test-workflow-macos.yml
@@ -240,10 +269,16 @@ jobs:
   condition: eq(variables['System.PullRequest.TargetBranch'], 'release')
 
   strategy:
-  - template: test-matrix-macos.yml
-    parameters:
-      version: '3.1'
-      experimental: ${{ parameters. experimental }}
+    matrix:
+      ${{ each test_config in parameters.test_matrix }}:
+        ${{ if and(test_config.enable_os_macos, test_config.enable_fw_netcore31, eq(test_config.is_experimental, parameters.experimental)) }}
+          ${{ test_config.name }}:
+            title: ${{ test_config.title }}
+            config: ${{ test_config.config_macos }}
+            script: ${{ test_config.script_macos }}
+            docker: ${{ test_config.install_docker_macos }}
+            docker_login: ${{ test_config.docker_login }}
+            nuget: ${{ test_config.nuget_macos }}
 
   steps:
   - template: test-workflow-macos.yml
