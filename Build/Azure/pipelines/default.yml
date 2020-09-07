@@ -8,7 +8,7 @@ variables:
   artifact_linq2db_binaries: 'linq2db_binaries'
   artifact_linq2db_tools_binaries: 'linq2db_tools_binaries'
   artifact_linq2db_aspnet_binaries: 'linq2db_aspnet_binaries'
-- template: templates/test-matrix.yml
+  template: templates/test-matrix.yml
 
 # build on commits to important branches: 'release', 'master'
 trigger:
