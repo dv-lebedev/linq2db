@@ -1,8 +1,11 @@
 variables:
-  solution: 'linq2db.sln'
-  build_configuration: 'Azure'
-  assemblyVersion: 3.0.0
   - template: templates/test-matrix.yml
+  - name: solution
+    value: linq2db.sln
+  - name: build_configuration
+    value: Azure
+  - name: assemblyVersion
+    value: 3.0.0
 
 trigger: none
 pr:
