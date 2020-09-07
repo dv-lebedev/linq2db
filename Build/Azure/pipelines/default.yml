@@ -1,14 +1,23 @@
 variables:
-  solution: 'linq2db.sln'
-  build_configuration: 'Azure'
-  assemblyVersion: 3.1.3
-  nugetVersion: 3.1.3
-  nugetDevVersion: 3.1.3
-  artifact_nugets: 'nugets'
-  artifact_linq2db_binaries: 'linq2db_binaries'
-  artifact_linq2db_tools_binaries: 'linq2db_tools_binaries'
-  artifact_linq2db_aspnet_binaries: 'linq2db_aspnet_binaries'
   - template: templates/test-matrix.yml
+  - name: solution
+    value: linq2db.sln
+  - name: build_configuration
+    value: Azure
+  - name: assemblyVersion
+    value: 3.1.3
+  - name: nugetVersion
+    value: 3.1.3
+  - name: nugetDevVersion
+    value: 3.1.3
+  - name: artifact_nugets
+    value: nugets
+  - name: artifact_linq2db_binaries
+    value: linq2db_binaries
+  - name: artifact_linq2db_tools_binaries
+    value: linq2db_tools_binaries
+  - name: artifact_linq2db_aspnet_binaries
+    value: linq2db_aspnet_binaries
 
 # build on commits to important branches: 'release', 'master'
 trigger:

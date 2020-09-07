@@ -1,8 +1,12 @@
 variables:
-  netfx46_tests: 'netfx46_tests'
-  netcore21_tests: 'netcoreapp21_tests'
-  netcore31_tests: 'netcoreapp31_tests'
-  test_matrix:
+  - name: netfx46_tests
+    value: netfx46_tests
+  - name: netcore21_tests
+    value: netcoreapp21_tests
+  - name: netcore31_tests
+    value: netcoreapp31_tests
+  - name: test_matrix
+    value:
 # SQLite
     - name: SQLite
       title: 'SQLite'
