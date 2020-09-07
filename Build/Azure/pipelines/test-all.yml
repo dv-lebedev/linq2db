@@ -1,8 +1,8 @@
 variables:
-- template: templates/test-matrix.yml
   solution: 'linq2db.sln'
   build_configuration: 'Azure'
   assemblyVersion: 3.0.0
+  - template: templates/test-matrix.yml
 
 trigger: none
 pr:
